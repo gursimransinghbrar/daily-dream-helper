@@ -117,6 +117,11 @@ export default {
 					'0%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-5px)' },
 					'100%': { transform: 'translateY(0)' }
+				},
+				'glow': {
+					'0%': { boxShadow: '0 0 0 rgba(66, 153, 225, 0)' },
+					'50%': { boxShadow: '0 0 20px rgba(66, 153, 225, 0.5)' },
+					'100%': { boxShadow: '0 0 0 rgba(66, 153, 225, 0)' }
 				}
 			},
 			animation: {
@@ -124,7 +129,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'scale-in': 'scale-in 0.2s ease-out',
-				'wave': 'wave 1s ease-in-out infinite'
+				'wave': 'wave 1s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite'
 			}
 		}
 	},

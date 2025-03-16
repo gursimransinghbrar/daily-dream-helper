@@ -5,6 +5,7 @@ import WaterTracker from '@/components/dashboard/WaterTracker';
 import TodoList from '@/components/dashboard/TodoList';
 import GoalsTracker from '@/components/dashboard/GoalsTracker';
 import MoneyTracker from '@/components/dashboard/MoneyTracker';
+import ThemeToggle from '@/components/dashboard/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Database, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -65,18 +66,21 @@ const Dashboard = () => {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <header className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Daily Dashboard</h1>
-            <p className="text-gray-500">Track your daily activities and progress</p>
+            <h1 className="text-3xl font-bold text-foreground">Daily Dashboard</h1>
+            <p className="text-muted-foreground">Track your daily activities and progress</p>
           </div>
-          <Link to="/">
-            <Button variant="ghost" size="icon">
-              <Home className="h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link to="/">
+              <Button variant="ghost" size="icon">
+                <Home className="h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </header>
         
         <motion.div 
@@ -85,25 +89,37 @@ const Dashboard = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants}>
+          <motion.div 
+            variants={itemVariants}
+            className="transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
             <WaterTracker />
           </motion.div>
           
-          <motion.div variants={itemVariants} className="xl:col-span-2">
+          <motion.div 
+            variants={itemVariants} 
+            className="xl:col-span-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
             <TodoList />
           </motion.div>
           
-          <motion.div variants={itemVariants} className="md:col-span-2 xl:col-span-2">
+          <motion.div 
+            variants={itemVariants} 
+            className="md:col-span-2 xl:col-span-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
             <GoalsTracker />
           </motion.div>
           
-          <motion.div variants={itemVariants}>
+          <motion.div 
+            variants={itemVariants}
+            className="transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
             <MoneyTracker />
           </motion.div>
         </motion.div>
         
         <motion.footer 
-          className="mt-8 text-center text-gray-500 text-sm"
+          className="mt-8 text-center text-muted-foreground text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
@@ -111,7 +127,7 @@ const Dashboard = () => {
           <p>All data is currently stored locally. Connect to a database for persistent storage.</p>
           <Button 
             variant="link" 
-            className="text-blue-500 p-0 h-auto mt-1"
+            className="text-primary p-0 h-auto mt-1"
             onClick={handleConnectDatabase}
           >
             <Database className="h-4 w-4 mr-1" /> Connect to Database

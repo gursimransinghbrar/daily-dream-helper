@@ -30,14 +30,14 @@ const WaterTracker = () => {
 
   const getProgressColor = () => {
     const percentage = (glasses / goal) * 100;
-    if (percentage < 25) return 'bg-blue-200';
-    if (percentage < 50) return 'bg-blue-300';
-    if (percentage < 75) return 'bg-blue-400';
-    return 'bg-blue-500';
+    if (percentage < 25) return 'bg-blue-200 dark:bg-blue-900';
+    if (percentage < 50) return 'bg-blue-300 dark:bg-blue-800';
+    if (percentage < 75) return 'bg-blue-400 dark:bg-blue-700';
+    return 'bg-blue-500 dark:bg-blue-600';
   };
 
   return (
-    <Card className="animate-fade-in">
+    <Card className="animate-fade-in transition-all duration-300 hover:shadow-md dark:hover:shadow-blue-500/10 hover:scale-[1.02]">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-dashboard-water">
           <Droplet className="h-5 w-5" /> Water Intake
@@ -68,7 +68,7 @@ const WaterTracker = () => {
           </div>
         </div>
         
-        <div className="w-full bg-gray-100 rounded-full h-4 dark:bg-gray-700">
+        <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-4">
           <div 
             className={cn("h-4 rounded-full transition-all duration-300", getProgressColor())}
             style={{ width: `${Math.min(100, (glasses / goal) * 100)}%` }}
@@ -83,7 +83,7 @@ const WaterTracker = () => {
                 "h-5 w-5 mx-1 transition-all duration-300",
                 i < glasses 
                   ? "text-dashboard-water animate-wave fill-dashboard-water" 
-                  : "text-gray-300",
+                  : "text-gray-300 dark:text-gray-600",
                 // Stagger animation
                 { 'animation-delay-100': i % 4 === 1 },
                 { 'animation-delay-200': i % 4 === 2 },
