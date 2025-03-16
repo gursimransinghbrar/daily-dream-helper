@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, Reorder } from 'framer-motion';
 import WaterTracker from '@/components/dashboard/WaterTracker';
 import TodoList from '@/components/dashboard/TodoList';
 import GoalsTracker from '@/components/dashboard/GoalsTracker';
 import MoneyTracker from '@/components/dashboard/MoneyTracker';
+import DailyHabitTracker from '@/components/dashboard/DailyHabitTracker';
 import ThemeToggle from '@/components/dashboard/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Database, Home, Settings, Grip } from 'lucide-react';
@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 
 // Define the widget types for reordering
-type WidgetType = 'water' | 'todo' | 'goals' | 'money';
+type WidgetType = 'water' | 'todo' | 'goals' | 'money' | 'habits';
 
 interface WidgetItem {
   id: WidgetType;
@@ -27,6 +27,7 @@ const Dashboard = () => {
   // Initial widget order
   const [widgets, setWidgets] = useState<WidgetItem[]>([
     { id: 'water', component: <WaterTracker /> },
+    { id: 'habits', component: <DailyHabitTracker /> },
     { id: 'todo', component: <TodoList /> },
     { id: 'goals', component: <GoalsTracker /> },
     { id: 'money', component: <MoneyTracker /> },
@@ -69,6 +70,7 @@ const Dashboard = () => {
       case 'todo': return <TodoList />;
       case 'goals': return <GoalsTracker />;
       case 'money': return <MoneyTracker />;
+      case 'habits': return <DailyHabitTracker />;
     }
   };
 
